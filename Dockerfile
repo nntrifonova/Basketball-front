@@ -1,39 +1,32 @@
-#### Stage 1: Build the react application
-FROM node:12.4.0-alpine as build
+# stage1 as builder
+FROM node:10-alpine as builder
 
-# Configure the main working directory inside the docker image.
-# This is the base directory used in any further RUN, COPY, and ENTRYPOINT
-# commands.
-WORKDIR /app
-
-# Copy the package.json as well as the package-lock.json and install
-# the dependencies. This is a separate step so the dependencies
-# will be cached unless changes to one of those two files
-# are made.
+# copy the package.json to install dependencies
 COPY package.json package-lock.json ./
-RUN npm install
 
-# Copy the main application
-COPY . ./
+# Install the dependencies and make the folder
+RUN npm install && mkdir /react-ui && mv ./node_modules ./react-ui
 
-# Arguments
-ARG REACT_APP_API_BASE_URL
-ENV REACT_APP_API_BASE_URL=http://localhost:3000
+WORKDIR /react-ui
 
-# Build the application
+COPY . .
+
+# Build the project and copy the files
 RUN npm run build
 
-#### Stage 2: Serve the React application from Nginx
-FROM nginx:1.17.0-alpine
 
-# Copy the react build from Stage 1
-COPY --from=build /app /var/www
+FROM nginx:alpine
 
-# Copy our custom nginx config
-COPY nginx.conf /etc/nginx/nginx.conf
+#!/bin/sh
 
-# Expose port 80 to the Docker host, so we can access it
-# from the outside.
-EXPOSE 80
+COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
 
-ENTRYPOINT ["nginx","-g","daemon off;"]
+## Remove default nginx index page
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy from the stahg 1
+COPY --from=builder /react-ui/build /usr/share/nginx/html
+
+EXPOSE 3000 80
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
