@@ -18,7 +18,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({template: "./public/index.html"
 const config = {
     entry: "./src/index.tsx",
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "./public"),
     },
     devServer: {
         open: true,

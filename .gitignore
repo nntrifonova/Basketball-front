@@ -11,6 +11,9 @@
 # production
 .idea
 /build
+/public/main.css
+/public/main.js
+/public/node_modules_web-vitals_dist_web-vitals_js.js
 
 # misc
 .DS_Store
