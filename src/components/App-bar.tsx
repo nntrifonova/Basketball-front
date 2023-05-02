@@ -1,19 +1,21 @@
 import * as React from 'react';
-import { createTheme, ThemeProvider  } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
+// @ts-ignore
+import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+// @ts-ignore
+import AdbIcon from '@mui/icons-material/Adb';
 
-
-const pages = ['Gallery', 'About', 'For Teams'];
+const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -35,19 +37,11 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     };
 
-    const theme = createTheme({
-        palette: {
-            primary: {
-                main: 'rgba(255,179,120,0.87)'
-            }
-        },
-    });
-
     return (
-        <ThemeProvider theme={theme}>
         <AppBar position="static">
         <Container maxWidth="xl">
         <Toolbar disableGutters>
+        <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
     <Typography
     variant="h6"
     noWrap
@@ -66,7 +60,7 @@ function ResponsiveAppBar() {
     LOGO
     </Typography>
 
-    <Box sx={{flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
+    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
     <IconButton
         size="large"
     aria-label="account of current user"
@@ -75,6 +69,7 @@ function ResponsiveAppBar() {
     onClick={handleOpenNavMenu}
     color="inherit"
         >
+        <MenuIcon />
         </IconButton>
         <Menu
     id="menu-appbar"
@@ -101,6 +96,7 @@ function ResponsiveAppBar() {
     ))}
     </Menu>
     </Box>
+    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
     <Typography
     variant="h5"
     noWrap
@@ -163,7 +159,6 @@ function ResponsiveAppBar() {
     </Toolbar>
     </Container>
     </AppBar>
-        </ThemeProvider>
 );
 }
 export default ResponsiveAppBar;
