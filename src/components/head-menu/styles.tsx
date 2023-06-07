@@ -15,11 +15,24 @@ const theme = createTheme({
 const containerStyle = {
 
     [theme.breakpoints.down('xs')]: {
+        display: 'flex'
+    },
+    [theme.breakpoints.up('xs')]: {
+        display: 'none'
+    }
+};
+
+const menuStyle = {
+    [theme.breakpoints.down('xs')]: {
         display: 'block'
     },
     [theme.breakpoints.up('xs')]: {
         display: 'none'
     }
+
 }
 
-export {containerStyle};
+export const Styles =  {
+    containerStyle,
+    menuStyle
+};

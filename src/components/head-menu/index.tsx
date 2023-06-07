@@ -1,23 +1,19 @@
 import * as React from 'react';
 
 import Box from '@mui/material/Box';
-
 import Typography from '@mui/material/Typography';
-
-
 import MenuItem from '@mui/material/MenuItem';
-
-
-import {containerStyle} from "./styles"
-import {arSD} from "@mui/material/locale";
-
-interface IProps {
-    vertical: ['bottom', 'top'],
-    horizontal: 'left',
-}
+import {Styles} from "./styles"
+import {open} from "fs";
+import Menu from '@mui/material/Menu';
+import {UserIcon} from "../user-icon";
+// interface IProps {
+//     vertical: string,
+//     horizontal: "left"
+// }
 
 const pages = ['Gallery', 'About', 'For Teams'];
-export const HeadMenu = ({vertical, horizontal}: IProps) => {
+export const HeadMenu = () => {
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -28,18 +24,27 @@ export const HeadMenu = ({vertical, horizontal}: IProps) => {
         setAnchorElNav(null);
     };
     return (
-        <Box style={containerStyle}
+        <Box style={Styles.containerStyle}>
+            <UserIcon/>
+             <Menu
              anchorEl={anchorElNav}
-             anchorOrigin={{vertical[1]}}
+             anchorOrigin={{
+                 vertical: 'bottom',
+                 horizontal: 'left',
+             }}
              keepMounted
-             transformOrigin={{vertical[0]}, {horizontal}}
+             transformOrigin={{
+                 vertical: 'top',
+                 horizontal: 'left',
+             }}
              open={Boolean(anchorElNav)}
-             onClose={handleCloseNavMenu}
+             onClose={handleCloseNavMenu} style={Styles.menuStyle}>
              {pages.map((page) => (
                  <MenuItem key={page} onClick={handleCloseNavMenu}>
                      <Typography textAlign="center">{page}</Typography>
-                 </MenuItem>
-             ))}/>
+                 </MenuItem>)
+             )}
+            </Menu>
+        </Box>
     );
 }
-/// проблема с полями mui, пока не решила
