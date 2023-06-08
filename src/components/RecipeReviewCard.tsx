@@ -10,8 +10,13 @@ import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
+import {getInfo, del, post, patch } from "../utils/Util";
+import {useEffect} from "react";
 
-let content = "Here is a text for post";
+
+
+
+let firstPartContent = "Here is the first part of a text for post";
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
 }
@@ -29,10 +34,20 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 export default function RecipeReviewCard() {
     const [expanded, setExpanded] = React.useState(false);
+    const [content, setContent] = React.useState();
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+    useEffect(() => {
+
+        let c = getInfo('localhost:8080/admin/main').then((res) => {
+
+            setContent(res)
+
+        })
+    }, [])
 
     return (
         <Card sx={{ maxWidth: 800}}>
@@ -57,9 +72,7 @@ export default function RecipeReviewCard() {
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                    This impressive paella is a perfect party dish and a fun meal to cook
-                    together with your guests. Add 1 cup of frozen peas along with the mussels,
-                    if you like.
+                    {firstPartContent}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -79,6 +92,7 @@ export default function RecipeReviewCard() {
                 <CardContent>
                     <Typography>
                         {content}
+
                     </Typography>
                 </CardContent>
             </Collapse>
