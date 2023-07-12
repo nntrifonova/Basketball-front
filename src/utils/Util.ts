@@ -1,7 +1,7 @@
 import axios from 'axios'
 // import {useEffect, useState} from "react";
 
-const API_URL = 'localhost:8080/admin/main'
+const API_URL = 'localhost:8080/auth/register'
 
 let axiosInstance = axios.create({
     baseURL: API_URL,

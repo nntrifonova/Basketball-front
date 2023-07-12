@@ -18,7 +18,6 @@ const AppContainer = styled.div`
 
 function App() {
     useEffect(() => {
-        console.log('123213 s')
     },[])
   return (
       <AppContainer>

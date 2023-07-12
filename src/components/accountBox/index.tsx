@@ -23,18 +23,19 @@ const TopContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 1.8em;
+  padding: 4em 1.8em;
   padding-bottom: 5em;
 `;
 
 const BackDrop = styled(motion.div)`
-  width: 160%;
+  //width: 160%;
   height: 550px;
   position: absolute;
   display: flex;
   flex-direction: column;
-  border-radius: 50%;
-  transform: rotate(60deg);
+ 
+  //border-radius: 50%;
+  //transform: rotate(1deg);
   top: -290px;
   left: -70px;
   background: rgb(241, 196, 15);
@@ -63,7 +64,7 @@ const HeaderText = styled.h2`
 const SmallText = styled.h5`
   color: #fff;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 20px;
   z-index: 10;
   margin: 0;
   margin-top: 7px;
@@ -81,13 +82,13 @@ const backdropVariants = {
         width: "233%",
         height: "1050px",
         borderRadius: "20%",
-        transform: "rotate(60deg)",
+        transform: "rotate(1deg)",
     },
     collapsed: {
         width: "160%",
-        height: "550px",
-        borderRadius: "50%",
-        transform: "rotate(60deg)",
+        height: "490px",
+        // borderRadius: "0%",
+        // transform: "rotate(1deg)",
     },
 };
 
