@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "../NavBar";
 
 function Blogdetails() {
 	const history = useNavigate();
@@ -62,7 +62,7 @@ function Blogdetails() {
 	};
 	return (
 		<>
-			<Navbar />
+			<Navbar className={"default"}/>
 			<div className="blog-details">
 				{loading && <div>Loading...</div>}
 				{err && <div>{err}</div>}
