@@ -114,17 +114,6 @@ export function SignupForm(props: any) {
           </form>
        </Fragment>
        <Marginer direction="vertical" margin={10} />
-        {/*<SubmitButton type="submit">Signup</SubmitButton>*/}
-
-
-            {/*<Form method="post" action="http://localhost:8080/auth/register">*/}
-            {/*    <Input name="signup-name" type="text" placeholder="Full Name" />*/}
-            {/*    <Input name="signup-email" type="email" placeholder="Email" />*/}
-            {/*    <Input name="signup-password" type="password" placeholder="Password" />*/}
-            {/*    <Input name="signup-confirm" type="password" placeholder="Confirm Password" />*/}
-            {/*    <Marginer direction="vertical" margin={10} />*/}
-            {/*    <SubmitButton type="submit">Signup</SubmitButton>*/}
-            {/*</Form>*/}
 
        <Marginer direction="vertical" margin="1em" />
             <MutedLink href="#">

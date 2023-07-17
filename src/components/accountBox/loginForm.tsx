@@ -1,38 +1,89 @@
-import React, {useContext, useState} from "react";
+import React, {Fragment, useContext, useState} from "react";
 import {
   BoldLink,
   BoxContainer,
-  FormContainer,
-  Input,
   MutedLink,
   SubmitButton,
 } from "./common";
 import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
 import {Form} from "reactstrap";
+import axios from "axios";
 
 export function LoginForm(props: any) {
   const { switchToSignup } = useContext(AccountContext);
 
-   const [term, setTerm] = useState('');
-   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
-       // Preventing the page from reloading
-       event.preventDefault();
-       // Do something
-       alert(term)
-   }
+  const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    });
+
+  const { email, password } = formData;
+  const onChange = (e: any) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+   //const [term, setTerm] = useState('');
+   // const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+   //     // Preventing the page from reloading
+   //     event.preventDefault();
+   //     // Do something
+   //     alert(term)
+   // }
+
+    const onSubmit = async (e: any) => {
+    e.preventDefault();
+      const User = {
+        email,
+        password,
+      };
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const body = JSON.stringify(User);
+        const res = await axios.post("http://localhost:8080/auth/login", body, config);
+        console.log(res.data);
+      } catch (err: any) {
+        console.error(err.response.data);
+      }
+  };
 
   return (
       <BoxContainer>
-          <Form method="post" action="http://localhost:8080/auth/login">
-              <Input name="login-email" type="email" placeholder="Email" />
-              <Input name="login-password" type="password" placeholder="Password" />
-              <Marginer direction="vertical" margin={10} />
-              <MutedLink href="#">Forget your password?</MutedLink>
-              <Marginer direction="vertical" margin="1.6em" />
-              <SubmitButton type="submit">Sign in</SubmitButton>
-              <Marginer direction="vertical" margin="1em" />
-          </Form>
+          <Fragment>
+          <h1 className='large text-primary'>Sign In</h1>
+          <p className='lead'>
+            <i className='fas fa-user'></i> Welcome back!
+          </p>
+          <form className='form' onSubmit={(e) => onSubmit(e)}>
+
+            <div className='form-group'>
+              <input
+                onChange={onChange}
+                type='email'
+                placeholder='Email Address'
+                name='email'
+                value={email}
+              />
+            </div>
+            <div className='form-group'>
+              <input
+                onChange={onChange}
+                type='password'
+                placeholder='Password'
+                name='password'
+                value={password}
+              />
+            </div>
+            <SubmitButton
+              onChange={onChange}
+              type='submit'
+              value='Login'>
+            </SubmitButton>
+          </form>
+       </Fragment>
         <MutedLink href="#">
           Don't have an account?{" "}
         </MutedLink>
