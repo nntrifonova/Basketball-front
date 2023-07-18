@@ -6,15 +6,15 @@ import Navbar from "../NavBar";
 function Blogdetails() {
 	const history = useNavigate();
 	const { id } = useParams();
-	const [showDelete, setShowDelete] = useState();
-	const [data, setData] = useState();
+	const [showDelete, setShowDelete] = useState<boolean>();
+	const [data, setData] = useState<any>();
 	const [err, setError] = useState();
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		setLoading(true);
 		axios
-			.get(`api/v1/posts/${id}`, {
+			.get(`http://localhost:8080/main/posts/${id}`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -31,7 +31,7 @@ function Blogdetails() {
 		setLoading(true);
 		if (data) {
 			axios
-				.get("api/v1/users/me", {
+				.get("http://localhost:8080/api/:id/me", {
 					withCredentials: true,
 				})
 				.then((res) => {
@@ -49,7 +49,7 @@ function Blogdetails() {
 	const click = async () => {
 		setLoading(true);
 		try {
-			await axios.delete(`api/v1/posts/${id}`, {
+			await axios.delete(`http://localhost:8080/main/posts/${id}`, {
 				withCredentials: true,
 			});
 			history("/");

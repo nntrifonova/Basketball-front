@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {FormEvent, useEffect} from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../NavBar";
@@ -22,31 +22,33 @@ function Create() {
     useEffect(() => {
         setLoading(true);
         axios
-            .get("api/v1/users/me", {
+            .get("api/:id/me", {
                 withCredentials: true,
             })
             .then((res) => {
                 if (res.status !== 200) {
                     console.log("~ file: Create.js ~ line 21 ~ .then ~ res", res);
-                    navigate("/login");
+                    navigate("/auth/login");
                 } else {
                     setUser(res.data.data.user.id);
                 }
             })
             .catch((e) => {
                 console.log(" ~ file: Create.js ~ line 31 ~ useEffect ~ e", e);
-                navigate("/login");
+                navigate("/auth/login");
             });
 
         setLoading(false);
     }, [navigate]);
 
-    const click = (event: Event) => {
+
+
+    const click = (event: FormEvent<HTMLFormElement>) => {
         setLoading(true);
         event.preventDefault();
         axios
             .post(
-                "api/v1/posts/",
+                "api/main/posts/",
                 {
                     title: title,
                     content: text,
@@ -92,7 +94,7 @@ function Create() {
                     <label>Blog body :</label>
                     <textarea required value={text} onChange={(e) => setText(e.target.value)}></textarea>
 
-                    <button>Submit</button>
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </>

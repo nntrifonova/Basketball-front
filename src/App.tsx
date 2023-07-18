@@ -5,10 +5,12 @@ import ResponsiveAppBar from "./components/ResponsiveAppBar";
 import { AccountBox } from "./components/accountBox";
 import RecipeReviewCard from "./components/RecipeReviewCard";
 import styled from "styled-components";
-import {Route, Router, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Router, Routes} from "react-router-dom";
 import Home from "./components/home/home";
 import Create from "./components/Posts/CreatePost";
 import Blogdetails from "./components/Posts/Details";
+import axios from "axios";
+import Home_H from "./components/Posts/HHome";
 
 
 const AppContainer = styled.div`
@@ -21,22 +23,23 @@ const AppContainer = styled.div`
 `;
 
 function App() {
-    useEffect(() => {
-    },[])
+
   return (
+	  <AppContainer>
       <div className="App">
 			<div className="content">
-				<Router>
+				<BrowserRouter>
 					<Routes>
-						<Route exact path="/" element={<Home />} />
-						<Route exact path="/login" element={<Login />} />
-						<Route exact path="/register" element={<SignUp />} />
+						<Route path="/" element={<Home_H />} />
+						<Route path="/auth/login" element={<AccountBox />} />
+						<Route path="/auth/register" element={<AccountBox />} />
 						<Route path="/Create" element={<Create />} />
 						<Route path="/:id" element={<Blogdetails />} />
 					</Routes>
-				</Router>
+				</BrowserRouter>
 			</div>
 		</div>
+	  </AppContainer>
 
     //   <AppContainer>
     //   <AccountBox />

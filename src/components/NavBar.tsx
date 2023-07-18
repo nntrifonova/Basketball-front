@@ -63,7 +63,7 @@ function Navbar(props: { className: string}) {
 
 	return (
 		<nav className="navbar">
-			<h1>The Blog</h1>
+			<h1>Basketball </h1>
 			<div className="links">
 				<Link to="/">Home</Link>
 				{!isLoggedIn ? <Link to="/login"> Login </Link> : <></>}
