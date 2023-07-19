@@ -70,6 +70,7 @@ export const SubmitButton = styled.button`
     rgba(241, 196, 15, 1) 20%,
     rgba(243, 172, 18, 1) 100%
   );
+  
 
   &:hover {
     filter: brightness(1.03);

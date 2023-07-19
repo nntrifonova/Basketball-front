@@ -20,25 +20,25 @@ function Create() {
     }
 
     useEffect(() => {
-        setLoading(true);
-        axios
-            .get("api/:id/me", {
-                withCredentials: true,
-            })
-            .then((res) => {
-                if (res.status !== 200) {
-                    console.log("~ file: Create.js ~ line 21 ~ .then ~ res", res);
-                    navigate("/auth/login");
-                } else {
-                    setUser(res.data.data.user.id);
-                }
-            })
-            .catch((e) => {
-                console.log(" ~ file: Create.js ~ line 31 ~ useEffect ~ e", e);
-                navigate("/auth/login");
-            });
-
-        setLoading(false);
+        // setLoading(true);
+        // axios
+        //     .get("api/:id/me", {
+        //         withCredentials: true,
+        //     })
+        //     .then((res) => {
+        //         if (res.status !== 200) {
+        //             console.log("~ file: Create.js ~ line 21 ~ .then ~ res", res);
+        //             navigate("/auth/login");
+        //         } else {
+        //             setUser(res.data.data.user.id);
+        //         }
+        //     })
+        //     .catch((e) => {
+        //         console.log(" ~ file: Create.js ~ line 31 ~ useEffect ~ e", e);
+        //         navigate("/auth/login");
+        //     });
+        //
+        // setLoading(false);
     }, [navigate]);
 
 
@@ -48,7 +48,7 @@ function Create() {
         event.preventDefault();
         axios
             .post(
-                "api/main/posts/",
+                "http://localhost:8080/main/posts/",
                 {
                     title: title,
                     content: text,

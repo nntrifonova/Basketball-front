@@ -16,14 +16,14 @@ function Navbar(props: { className: string}) {
 	useEffect(() => {
 		setLoading(true);
 		axios
-			.get("api/v1/users/me", {
+			.get("/users/me", {
 				withCredentials: true,
 			})
 			.then((res) => {
 				console.log("~ file: Navbar.js ~ line 17 ~ .then ~ res", res);
 				if (res.status !== 200) {
 					axios
-						.get("api/v1/auth/refresh", {
+						.get("/auth/refresh", {
 							withCredentials: true,
 						})
 						.then((res) => {
@@ -49,7 +49,7 @@ function Navbar(props: { className: string}) {
 	}, [isLoggedIn]);
 	const handleLogOut = (e: any) => {
 		e.preventDefault();
-		axios.get("api/v1/auth/logout", { withCredentials: true }).then((res) => {
+		axios.get("/auth/logout", { withCredentials: true }).then((res) => {
 			console.log(" ~ file: Navbar.js ~ line 53 ~ axios.get ~ res", res);
 
 			if (res.status === 200) {
@@ -66,8 +66,8 @@ function Navbar(props: { className: string}) {
 			<h1>Basketball </h1>
 			<div className="links">
 				<Link to="/">Home</Link>
-				{!isLoggedIn ? <Link to="/login"> Login </Link> : <></>}
-				{!isLoggedIn ? <Link to="/register">Sign Up</Link> : <></>}
+				{!isLoggedIn ? <Link to="/auth/login"> Login </Link> : <></>}
+				{!isLoggedIn ? <Link to="/auth/register">Sign Up</Link> : <></>}
 				<Link to="/Create">New Blog</Link>
 			</div>
 			<div className="blog-details" style={{ marginLeft: "40px" }}>

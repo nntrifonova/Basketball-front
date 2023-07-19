@@ -69,6 +69,7 @@ export function SignupForm(props: any) {
           <form className='form' onSubmit={(e) => onSubmit(e)}>
             <div className='form-group'>
               <input
+                className="credentials-input"
                 onChange={onChange}
                 type='text'
                 placeholder='Name'
@@ -79,6 +80,7 @@ export function SignupForm(props: any) {
             </div>
             <div className='form-group'>
               <input
+                className="credentials-input"
                 onChange={onChange}
                 type='email'
                 placeholder='Email Address'
@@ -88,6 +90,7 @@ export function SignupForm(props: any) {
             </div>
             <div className='form-group'>
               <input
+                className="credentials-input"
                 onChange={onChange}
                 type='password'
                 placeholder='Password'
@@ -98,6 +101,7 @@ export function SignupForm(props: any) {
             </div>
             <div className='form-group'>
               <input
+                className="credentials-input"
                 onChange={onChange}
                 type='password'
                 placeholder='Confirm Password'
@@ -110,6 +114,7 @@ export function SignupForm(props: any) {
               onChange={onChange}
               type='submit'
               value='Register'>
+              <Link to="/"> Sign up </Link>
             </SubmitButton>
           </form>
        </Fragment>

@@ -7,8 +7,8 @@ import {
 } from "./common";
 import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
-import {Form} from "reactstrap";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 export function LoginForm(props: any) {
   const { switchToSignup } = useContext(AccountContext);
@@ -61,6 +61,7 @@ export function LoginForm(props: any) {
 
             <div className='form-group'>
               <input
+                className="credentials-input"
                 onChange={onChange}
                 type='email'
                 placeholder='Email Address'
@@ -70,6 +71,7 @@ export function LoginForm(props: any) {
             </div>
             <div className='form-group'>
               <input
+                className="credentials-input"
                 onChange={onChange}
                 type='password'
                 placeholder='Password'
@@ -81,6 +83,7 @@ export function LoginForm(props: any) {
               onChange={onChange}
               type='submit'
               value='Login'>
+                <Link to="/"> Login </Link>
             </SubmitButton>
           </form>
        </Fragment>

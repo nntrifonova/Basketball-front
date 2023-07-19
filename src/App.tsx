@@ -1,15 +1,11 @@
 import React, {useEffect} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import ResponsiveAppBar from "./components/ResponsiveAppBar";
 import { AccountBox } from "./components/accountBox";
-import RecipeReviewCard from "./components/RecipeReviewCard";
 import styled from "styled-components";
 import {BrowserRouter, Route, Router, Routes} from "react-router-dom";
 import Home from "./components/home/home";
 import Create from "./components/Posts/CreatePost";
 import Blogdetails from "./components/Posts/Details";
-import axios from "axios";
 import Home_H from "./components/Posts/HHome";
 
 
