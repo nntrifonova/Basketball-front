@@ -27,8 +27,8 @@ function App() {
 				<BrowserRouter>
 					<Routes>
 						<Route path="/" element={<Home_H />} />
-						<Route path="/auth/login" element={<AccountBox />} />
-						<Route path="/auth/register" element={<AccountBox />} />
+						<Route path="/auth/login" element={AccountBox("signin")} />
+						<Route path="/auth/register" element={AccountBox( "signup")} />
 						<Route path="/Create" element={<Create />} />
 						<Route path="/:id" element={<Blogdetails />} />
 					</Routes>
