@@ -1,5 +1,5 @@
 import React, {Fragment, useContext, useEffect, useState} from "react";
-import { Link } from "react-router-dom";
+import {Link, redirect} from "react-router-dom";
 import {
     BoldLink,
     BoxContainer,
@@ -49,8 +49,12 @@ export function SignupForm(props: any) {
           },
         };
         const body = JSON.stringify(newUser);
-        const res = await axios.post("http://localhost:8080/auth/register", body, config);
-        console.log(res.data);
+        axios.post("http://localhost:8080/auth/register", body, config).then((res)=> {
+            if (res.status === 200) {
+                return redirect("/");
+            }
+        });
+
       } catch (err: any) {
         console.error(err.response.data);
       }
@@ -111,10 +115,9 @@ export function SignupForm(props: any) {
               />
             </div>
             <SubmitButton
-              onChange={onChange}
               type='submit'
               value='Register'>
-              <Link to="/"> Sign up </Link>
+              Sign up
             </SubmitButton>
           </form>
        </Fragment>

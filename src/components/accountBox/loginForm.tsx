@@ -8,11 +8,10 @@ import {
 import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import { redirect } from 'react-router-dom';
 
 export function LoginForm(props: any) {
   const { switchToSignup } = useContext(AccountContext);
-
   const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -43,8 +42,12 @@ export function LoginForm(props: any) {
           },
         };
         const body = JSON.stringify(User);
-        const res = await axios.post("http://localhost:8080/auth/login", body, config);
-        console.log(res.data);
+        const res = await axios.post("http://localhost:8080/auth/login", body, config)
+            .then(function (response) {
+                if(response.status === 200 ){
+                     return redirect("/" );
+                }
+            })
       } catch (err: any) {
         console.error(err.response.data);
       }
@@ -83,7 +86,7 @@ export function LoginForm(props: any) {
               onChange={onChange}
               type='submit'
               value='Login'>
-                <Link to="/"> Login </Link>
+                Sign in
             </SubmitButton>
           </form>
        </Fragment>
@@ -94,5 +97,6 @@ export function LoginForm(props: any) {
               Signup
           </BoldLink>
       </BoxContainer>
+
   );
 }
