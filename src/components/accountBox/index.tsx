@@ -15,6 +15,7 @@ const BoxContainer = styled.div`
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
   position: relative;
   overflow: hidden;
+  align-items: center;
 `;
 
 const TopContainer = styled.div`
@@ -24,7 +25,7 @@ const TopContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 4em 1.8em;
-  padding-bottom: 5em;
+  padding-bottom: 3em;
 `;
 
 const BackDrop = styled(motion.div)`
@@ -34,8 +35,7 @@ const BackDrop = styled(motion.div)`
   display: flex;
   flex-direction: column;
  
-  //border-radius: 50%;
-  //transform: rotate(1deg);
+
   top: -290px;
   left: -70px;
   background: rgb(241, 196, 15);

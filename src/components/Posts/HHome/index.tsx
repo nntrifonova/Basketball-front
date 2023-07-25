@@ -5,7 +5,6 @@ import {
   HomeContainer,
   HomeContent,
   ListSection,
-  SearchSection,
 } from "./styles";
 import Navbar from "../../NavBar";
 import axios from "axios";

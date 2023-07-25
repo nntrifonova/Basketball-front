@@ -68,7 +68,7 @@ function Navbar(props: { className: string}) {
 				<Link to="/">Home</Link>
 				{!isLoggedIn ? <Link to="/auth/login"> Login </Link> : <></>}
 				{!isLoggedIn ? <Link to="/auth/register">Sign Up</Link> : <></>}
-				<Link to="/Create">New Blog</Link>
+				{isLoggedIn ? <Link to="/Create">New Post</Link> : <></>}
 			</div>
 			<div className="blog-details" style={{ marginLeft: "40px" }}>
 				{isLoggedIn ? <button onClick={handleLogOut}>log out</button> : <></>}

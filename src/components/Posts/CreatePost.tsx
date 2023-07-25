@@ -92,7 +92,7 @@ function Create() {
                     <input required value={title} onChange={(e) => setInput(e.target.value)} />
 
                     <label>Blog body :</label>
-                    <textarea required value={text} onChange={(e) => setText(e.target.value)}></textarea>
+                    <textarea wrap="soft" cols={80} rows={50} required value={text} onChange={(e) => setText(e.target.value)}></textarea>
 
                     <button type="submit">Submit</button>
                 </form>
