@@ -37,27 +37,27 @@ export function SignupForm(props: any) {
       console.log("Passwords do not match");
     } else {
       // console.log(formData);
-      const newUser = {
-        name,
-        email,
-        password,
-      };
-      try {
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-        const body = JSON.stringify(newUser);
-        axios.post("http://localhost:8080/auth/register", body, config).then((res)=> {
-            if (res.status === 200) {
-                return redirect("/");
-            }
-        });
+          const newUser = {
+            name,
+            email,
+            password,
+          };
+          try {
+            const config = {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            };
+            const body = JSON.stringify(newUser);
+            axios.post("http://localhost:8080/auth/register", body, config).then((res)=> {
+                if (res.status === 200) {
+                    return redirect("/");
+                }
+            });
 
-      } catch (err: any) {
-        console.error(err.response.data);
-      }
+          } catch (err: any) {
+            console.error(err.response.data);
+          }
     }
   };
 

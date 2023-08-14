@@ -45,7 +45,7 @@ export function LoginForm(props: any) {
         const res = await axios.post("http://localhost:8080/auth/login", body, config)
             .then(function (response) {
                 if(response.status === 200 ){
-                     return redirect("/" );
+                     return redirect("http://localhost:3000/api" );
                 }
             })
       } catch (err: any) {

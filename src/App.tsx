@@ -26,6 +26,7 @@ function App() {
 			<div className="content">
 				<BrowserRouter>
 					<Routes>
+						<Route path="/api" element={<Home_H />} />
 						<Route path="/" element={<Home_H />} />
 						<Route path="/auth/login" element={AccountBox("signin")} />
 						<Route path="/auth/register" element={AccountBox( "signup")} />
