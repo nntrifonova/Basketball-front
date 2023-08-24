@@ -24,7 +24,7 @@ export function Home_H() {
 	useEffect(() => {
 		setLoading(true);
 		axios
-			.get("api/v1/posts/", {
+			.get("http://localhost:8080/main/posts", {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -42,21 +42,7 @@ export function Home_H() {
 		setLoading(false);
 	}, []);
   const [posts, setPosts] = useState<IPost[]>([] as IPost[]);
-  // const [postsCounter, setPostsCounter] = useState(0);
-  //
-  // async function fetchPosts(query = "") {
-  //   const response = await api.get(
-  //       `search/issues?q=${
-  //           query ? query : ""
-  //       }%20repo:${"pedr0d1as"}/Github-blog-issues`
-  //   );
-  //   setPosts(response.data.items);
-  //   setPostsCounter(response.data.total_count);
-  // }
-  //
-  // useEffect(() => {
-  //   fetchPosts();
-  // }, []);
+
 
   return (
       <>
@@ -66,30 +52,13 @@ export function Home_H() {
         <HomeContent>
 
           <ListSection>
-			  <PostCard
-
-			  ></PostCard>
-			  <PostCard
-
-			  ></PostCard>
-			  <PostCard
-
-			  ></PostCard>
-			  <PostCard
-
-			  ></PostCard>
-			  <PostCard
-
-			  ></PostCard>
-			  <PostCard
-
-			  ></PostCard>
-			  <PostCard
-
-			  ></PostCard>
-			  <PostCard
-
-			  ></PostCard>
+          {posts &&
+            posts.map((post) => (
+              <PostCard
+                key={`${post.title}-${post.number}`}
+                post={post}
+              ></PostCard>
+            ))}
           </ListSection>
         </HomeContent>
       </HomeContainer>
