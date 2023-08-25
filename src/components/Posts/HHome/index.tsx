@@ -17,31 +17,21 @@ export interface IPost {
 }
 
 export function Home_H() {
-  const [data, setData] = useState();
-	const [err, setError] = useState();
-	const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get("http://localhost:8080/main/posts", {
-				withCredentials: true,
-			})
-			.then((res) => {
-				if (res.status === 200) {
-					setData(res.data);
-				} else {
-					console.log( "~ file: Home.js ~ line 23 ~ .then ~ res.data", res);
-				}
-			})
-			.catch((e) => {
-				setError(e.message);
-				console.log("~ file: Home.js ~ line 27 ~ useEffect ~ e", e);
-			});
+	const [posts, setPosts] = useState<IPost[]>([] as IPost[]);
+    useEffect(() => {
+        async function fetchPosts() {
+            try {
+                const response = await axios.get('http://127.0.0.1:8080/main/posts');
+                setPosts(response.data);
+            }
+            catch (err: any) {
+                console.error(err.message);
+            }
+        }
+        fetchPosts();
+    }, []);
 
-		setLoading(false);
-	}, []);
-  const [posts, setPosts] = useState<IPost[]>([] as IPost[]);
 
 
   return (
